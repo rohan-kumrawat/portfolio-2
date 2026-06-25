@@ -8,7 +8,8 @@ export default function DeskIllustration() {
       height="100%"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ display: "block", maxHeight: "85vh" }}
+      preserveAspectRatio="xMidYMid meet"
+      style={{ display: "block", flex: 1 }}
     >
       <defs>
         <linearGradient id="lamp-gradient" x1="0" y1="0" x2="0" y2="1">

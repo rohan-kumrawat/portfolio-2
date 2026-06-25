@@ -109,104 +109,75 @@ export default function Home() {
       }}
     >
       {/* ─── Hero Section (100vh split screen) ─── */}
-      <div
-        style={{
-          width: "100%",
-          minHeight: "100vh",
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-          borderBottom: "var(--border-width) solid var(--border-color)",
-          transition: "border-color 0.3s ease",
-        }}
-      >
-        {/* Left Column: Desk Illustration */}
-        <div
-          style={{
-            background: "var(--color-light)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "40px",
-            borderRight: "var(--border-width) solid var(--border-color)",
-            position: "relative",
-            transition: "background 0.3s ease, border-color 0.3s ease",
-          }}
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            style={{ width: "100%", maxWidth: "480px" }}
-          >
-            <DeskIllustration />
-          </motion.div>
-        </div>
+      <div className="hero-container">
+        <div className="hero-inner">
+          {/* Left Column: Desk Illustration */}
+          <div className="hero-svg-wrapper">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              style={{ width: "100%", height: "100%", display: "flex", alignItems: "stretch" }}
+            >
+              <DeskIllustration />
+            </motion.div>
+          </div>
 
-        {/* Right Column: Intro Copy */}
-        <div
-          style={{
-            background: "var(--color-mint)",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            padding: "0 10% 0 8%",
-            gap: "20px",
-            position: "relative",
-            transition: "background 0.3s ease",
-          }}
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-start",
-            }}
-          >
-            <span
+          {/* Right Column: Intro Copy */}
+          <div className="hero-content-wrapper">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
               style={{
-                fontFamily: "'Caveat', cursive",
-                fontSize: "clamp(26px, 2.8vw, 38px)",
-                fontWeight: 700,
-                color: "var(--border-color)",
-                transform: "rotate(-3deg)",
-                marginBottom: "16px",
-                display: "inline-block",
-                transition: "color 0.3s ease",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
               }}
             >
-              👋 Hi, I&apos;m Rohan
-            </span>
-
-            <h1
-              style={{
-                fontFamily: "'Fredoka', sans-serif",
-                fontSize: "clamp(30px, 3.8vw, 62px)",
-                fontWeight: 700,
-                lineHeight: 1.15,
-                color: "var(--border-color)",
-                letterSpacing: "-0.01em",
-                transition: "color 0.3s ease",
-              }}
-            >
-              I like building <span className="text-outline">robust</span>,{" "}
-              <span className="text-outline">interactive</span> systems with code.
-              I also <span className="text-outline">design</span> &amp;{" "}
-              <span className="text-outline">scale</span> SaaS backends.
-            </h1>
-
-            <div style={{ marginTop: "32px" }}>
-              <a
-                href="#projects-section"
-                className="nav-pill active"
-                style={{ display: "inline-block" }}
+              <span
+                style={{
+                  fontFamily: "'Caveat', cursive",
+                  fontSize: "clamp(26px, 2.8vw, 38px)",
+                  fontWeight: 700,
+                  color: "var(--border-color)",
+                  transform: "rotate(-3deg)",
+                  marginBottom: "16px",
+                  display: "inline-block",
+                  transition: "color 0.3s ease",
+                }}
               >
-                View Projects
-              </a>
-            </div>
-          </motion.div>
+                👋 Hi, I&apos;m Rohan
+              </span>
+
+              <h1
+                style={{
+                  fontFamily: "'Fredoka', sans-serif",
+                  fontSize: "clamp(30px, 3.8vw, 62px)",
+                  fontWeight: 700,
+                  lineHeight: 1.15,
+                  color: "var(--border-color)",
+                  letterSpacing: "-0.01em",
+                  transition: "color 0.3s ease",
+                }}
+              >
+                I like building <span className="text-outline">robust</span>,{" "}
+                <span className="text-outline">interactive</span> systems with code.
+                I also <span className="text-outline">design</span> &amp;{" "}
+                <span className="text-outline">scale</span> SaaS backends.
+              </h1>
+
+              <div style={{ marginTop: "32px" }}>
+                <a
+                  href="#projects-section"
+                  className="nav-pill active"
+                  style={{ display: "inline-block" }}
+                >
+                  View Projects
+                </a>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
 

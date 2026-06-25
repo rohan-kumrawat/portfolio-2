@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Caveat:wght@400;700&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Caveat:wght@400;700&family=Space+Mono:wght@400;700&family=Yellowtail&family=Dancing+Script:wght@700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -34,6 +34,10 @@
   --color-contact-underline: #50c8a5;
 
   --color-nav-bg: rgba(232, 231, 236, 0.75);
+
+  /* Cassie-style Logo colors */
+  --logo-highlight: hsl(264, 51%, 71%); /* Lilac */
+  --logo-mint: hsl(164, 61%, 65%); /* Mint */
 }
 
 /* ─── Night/Dark Theme ─── */
@@ -66,6 +70,10 @@
   --color-contact-underline: #5f3d5d;
 
   --color-nav-bg: rgba(28, 26, 41, 0.75);
+
+  /* Cassie-style Logo colors */
+  --logo-highlight: hsl(344, 30%, 36%); /* Muted Plum */
+  --logo-mint: hsl(240, 33%, 77%); /* Periwinkle */
 }
 
 /* Home Page specific dark mode overrides */
@@ -817,5 +825,204 @@ html.night .skills-section {
   opacity: 0.8;
   margin: 0;
 }
+
+/* ─── Cassie-style Split Hero Layout ─── */
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-light); /* Left background */
+  border-bottom: var(--border-width) solid var(--border-color);
+  transition: background 0.3s ease, border-color 0.3s ease;
+  overflow: hidden;
+}
+
+@media (min-width: 800px) {
+  .hero-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 68%; /* Split ratio (approx. 30:70, matching cassie.codes 32:68 layout) */
+    background-color: var(--color-mint); /* Right background */
+    z-index: 0;
+    transition: background 0.3s ease;
+    border-left: var(--border-width) solid var(--border-color);
+  }
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 800px) {
+  .hero-inner {
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+}
+
+.hero-svg-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0;
+  z-index: 2;
+  transition: background 0.3s ease;
+  overflow: hidden;
+}
+
+@media (min-width: 800px) {
+  .hero-svg-wrapper {
+    width: 51%; /* Desktop layout occupies left 51% */
+    height: 100vh;
+    padding: 0;
+    flex-shrink: 0;
+  }
+}
+
+.hero-content-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 24px;
+  gap: 20px;
+  z-index: 2;
+  background-color: var(--color-mint); /* Stack copy with mint bg on mobile */
+  transition: background 0.3s ease;
+}
+
+@media (min-width: 800px) {
+  .hero-content-wrapper {
+    width: 49%; /* Desktop layout occupies right 49% */
+    height: 100vh;
+    padding: 0 10% 0 6%;
+    background-color: transparent; /* Transparent to let split background show through */
+  }
+}
+
+/* ─── Cassie-style Brand Logo ─── */
+.brand-logo {
+  position: fixed;
+  top: 20px;
+  left: 36px;
+  z-index: 200;
+  cursor: pointer;
+  display: block;
+  width: 320px;
+  height: 72px;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.brand-logo:hover {
+  transform: rotate(-3deg) scale(1.06);
+}
+
+@media (max-width: 600px) {
+  .brand-logo {
+    top: 16px;
+    left: 20px;
+    width: 200px;
+    height: 48px;
+  }
+}
+
+.logo-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.logo-text {
+  font-family: 'Yellowtail', 'Caveat', cursive;
+  font-size: 46px;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+}
+
+/* Keyframes for calligraphic drawing trail */
+@keyframes logoDraw {
+  from {
+    stroke-dashoffset: 900;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes logoFill {
+  from {
+    fill: transparent;
+  }
+  to {
+    fill: var(--logo-mint);
+  }
+}
+
+@keyframes logoFadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+/* Bouncing dot (like cassie's dot on the 'i') */
+@keyframes logoDotBounce {
+  0%, 100% { transform: translateY(0); }
+  30%       { transform: translateY(-12px); }
+  50%       { transform: translateY(-6px); }
+  70%       { transform: translateY(-10px); }
+}
+
+@keyframes logoDotAppear {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.logo-dot {
+  opacity: 0;
+  animation:
+    logoDotAppear 0.4s ease-out 1.4s forwards,
+    logoDotBounce 2.2s ease-in-out 1.9s infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+/* Layer 1: Highlight trail (Lilac / Muted Plum) */
+.logo-stroke1 {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: 
+    logoDraw 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+    logoFadeOut 0.3s ease-in-out 1.7s forwards;
+}
+
+/* Layer 2: Final stroke and fill (Mint / Periwinkle) */
+.logo-stroke2 {
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+  animation: 
+    logoDraw 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards 0.15s,
+    logoFill 0.4s ease-in-out 1.4s forwards;
+}
+
+/* Text outline hover fill effect */
+.text-outline {
+  cursor: default;
+}
+.text-outline:hover {
+  color: var(--border-color);
+  -webkit-text-fill-color: var(--border-color);
+}
+
 
 
