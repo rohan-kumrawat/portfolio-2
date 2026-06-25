@@ -24,14 +24,14 @@ function Funnel() {
       {/* Wireframe funnel cone */}
       <mesh ref={funnelRef} position={[0, -1.2, 0]} rotation={[Math.PI, 0, 0]}>
         <coneGeometry args={[2.2, 2.4, 32, 8, true]} />
-        <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.35} />
+        <meshBasicMaterial color="#303145" wireframe transparent opacity={0.35} />
       </mesh>
 
       {/* Orbiting sphere */}
       <group ref={orbitRef}>
         <mesh position={[1.8, 0.8, 0]}>
           <sphereGeometry args={[0.12, 16, 16]} />
-          <meshBasicMaterial color="#ffffff" />
+          <meshBasicMaterial color="#f09bb0" />
         </mesh>
 
         {/* Orbit path ring */}
@@ -72,7 +72,7 @@ function SpiralPath() {
   return (
     // @ts-ignore
     <line ref={ref} geometry={geo}>
-      <lineBasicMaterial color="#ffffff" transparent opacity={0.6} />
+      <lineBasicMaterial color="#ad8fdb" transparent opacity={0.8} />
     </line>
   );
 }

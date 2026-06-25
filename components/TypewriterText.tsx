@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const FULL_TEXT = "Build fast. Think deep. Ship fearlessly.";
+const FULL_TEXT = "Full Stack Developer. SaaS Architect. Problem Solver.";
 
 export default function TypewriterText() {
   const [displayed, setDisplayed] = useState("");

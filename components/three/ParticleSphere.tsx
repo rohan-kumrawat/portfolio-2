@@ -40,7 +40,7 @@ function Particles() {
         />
       </bufferGeometry>
       <pointsMaterial
-        color="#ffffff"
+        color="#303145"
         size={0.018}
         sizeAttenuation
         transparent
@@ -63,7 +63,7 @@ function WireframeSphere() {
   return (
     <mesh ref={meshRef}>
       <sphereGeometry args={[1.8, 16, 16]} />
-      <meshBasicMaterial color="#444" wireframe transparent opacity={0.25} />
+      <meshBasicMaterial color="#ad8fdb" wireframe transparent opacity={0.25} />
     </mesh>
   );
 }

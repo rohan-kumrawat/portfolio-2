@@ -56,7 +56,7 @@ function SineGrid() {
           args={[positions, 3]}
         />
       </bufferGeometry>
-      <pointsMaterial color="#ffffff" size={0.04} sizeAttenuation transparent opacity={0.7} />
+      <pointsMaterial color="#303145" size={0.04} sizeAttenuation transparent opacity={0.7} />
     </points>
   );
 }

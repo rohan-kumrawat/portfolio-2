@@ -19,55 +19,28 @@ interface Job {
 
 const JOBS: Job[] = [
   {
-    role: "Full Stack Engineer",
-    company: "TechStartup Inc.",
-    type: "Full-time",
+    role: "Full Stack Developer (Freelance / Contract)",
+    company: "Self-Employed, Indore, MP",
+    type: "Contract",
     duration: "Jan 2024 - Present",
     bullets: [
-      "Architected and shipped a microfinance SaaS platform serving 10,000+ daily active users across 50+ centers.",
-      "Designed RESTful APIs with NestJS and TypeORM, achieving sub-100ms p95 latency for core financial operations.",
-      "Built real-time dashboards with Next.js 14 App Router, React Query, and WebSocket integrations.",
-      "Implemented role-based access control (RBAC) with JWT, reducing unauthorized access incidents by 100%.",
+      "Delivered 3 production applications end-to-end across healthcare and fintech domains — covering system design, REST API development, database schema design, third-party integrations, and cloud deployment on Railway, AWS Lightsail, and Vercel.",
+      "Designed and implemented multi-tenant SaaS architecture with centre-level data isolation enforced via JWT payload and a 3-layer guard chain (Auth - Isolation - Service), ensuring zero cross-tenant data leakage across all database queries.",
+      "Built and deployed backends using NestJS, PostgreSQL, and TypeORM; integrated third-party services including Razorpay (payments + webhooks), WhatsApp Business API (bulk messaging), and Cloudinary (media management).",
+      "Translated client business requirements into technical specifications; managed iterative delivery with regular stakeholder reviews across all 3 engagements."
     ],
-    skills: ["Next.js", "NestJS", "TypeScript", "PostgreSQL", "Redis", "Docker"],
+    skills: ["NestJS", "TypeScript", "PostgreSQL", "TypeORM", "WhatsApp API", "Razorpay", "Cloudinary", "Railway", "AWS", "Vercel"],
   },
   {
-    role: "Frontend Developer",
-    company: "Digital Agency Co.",
-    type: "Contract",
-    duration: "Jun 2022 - Dec 2023",
-    bullets: [
-      "Delivered 12+ high-performance web applications for enterprise clients in fintech and e-commerce sectors.",
-      "Reduced bundle size by 45% through code-splitting, tree-shaking, and lazy loading strategies.",
-      "Established a component library with 60+ reusable components, cutting development time by 30%.",
-      "Led a team of 4 developers, conducting daily standups and weekly code reviews.",
-    ],
-    skills: ["React", "Vue.js", "GraphQL", "Figma", "Webpack", "Storybook"],
-  },
-  {
-    role: "Backend Engineer",
-    company: "DataFlow Systems",
-    type: "Full-time",
-    duration: "Mar 2021 - May 2022",
-    bullets: [
-      "Built data ingestion pipelines processing 5M+ records/day using Node.js workers and Bull queues.",
-      "Designed a multi-tenant architecture supporting 200+ clients with isolated data partitioning.",
-      "Optimized Mongo aggregation pipelines, improving report generation speed by 8x.",
-      "Containerized all microservices with Docker and set up CI/CD on GitHub Actions.",
-    ],
-    skills: ["Node.js", "MongoDB", "RabbitMQ", "AWS", "Docker", "Kubernetes"],
-  },
-  {
-    role: "Software Developer Intern",
-    company: "InnovateLabs",
+    role: "MEAN Stack Developer Intern",
+    company: "The Stepping Stone, Indore, MP",
     type: "Internship",
-    duration: "Aug 2020 - Feb 2021",
+    duration: "Aug 2023 - Jan 2024",
     bullets: [
-      "Developed a internal analytics dashboard that tracked 25+ KPIs for the product team.",
-      "Contributed to an open-source authentication SDK, which now has 2k+ GitHub stars.",
-      "Wrote unit and integration tests achieving 85% code coverage.",
+      "Built a full-stack e-commerce web application with product catalog, shopping cart, and user authentication as part of a 6-month training program.",
+      "Developed RESTful APIs using Node.js, Express.js, and MongoDB for product management, cart operations, and JWT-based user authentication."
     ],
-    skills: ["React", "Python", "Django", "MySQL", "Jest", "Git"],
+    skills: ["Node.js", "Express.js", "MongoDB", "Angular", "JWT", "REST API", "Git"],
   },
 ];
 
@@ -104,32 +77,33 @@ export default function WorkPage() {
             width: "100%",
             height: "100vh",
             display: "grid",
-            gridTemplateColumns: "1fr 1px 1fr",
+            gridTemplateColumns: "1fr var(--border-width) 1fr",
           }}
         >
           {/* ─── Left: Job Info ─── */}
           <div style={{
-            padding: "10vh 7% 12vh 8%",
+            padding: "10vh 7% 12vh 9%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            gap: "20px",
+            gap: "24px",
           }}>
             <div>
               <h2 style={{
-                fontFamily: "'Oxanium', sans-serif",
-                fontSize: "clamp(24px, 3.2vw, 48px)",
+                fontFamily: "'Fredoka', sans-serif",
+                fontSize: "clamp(24px, 2.5vw, 42px)",
                 fontWeight: 700,
-                color: "#fff",
-                lineHeight: 1.1,
+                color: "var(--color-dark)",
+                lineHeight: 1.15,
               }}>
                 {job.role}
               </h2>
               <p style={{
-                fontFamily: "'Oxanium', sans-serif",
-                fontSize: "clamp(16px, 1.8vw, 22px)",
-                fontWeight: 400,
-                color: "rgba(255,255,255,0.75)",
+                fontFamily: "'Outfit', sans-serif",
+                fontSize: "clamp(16px, 1.5vw, 20px)",
+                fontWeight: 600,
+                color: "var(--color-dark)",
+                opacity: 0.85,
                 marginTop: "8px",
               }}>
                 {job.company}
@@ -137,9 +111,11 @@ export default function WorkPage() {
               <p style={{
                 fontFamily: "'Space Mono', monospace",
                 fontSize: "12px",
-                color: "rgba(255,255,255,0.4)",
-                marginTop: "4px",
-                letterSpacing: "0.06em",
+                fontWeight: 700,
+                color: "var(--color-dark)",
+                opacity: 0.5,
+                marginTop: "6px",
+                letterSpacing: "0.05em",
               }}>
                 {job.type} &nbsp;·&nbsp; {job.duration}
               </p>
@@ -147,22 +123,32 @@ export default function WorkPage() {
 
             <div>
               <h3 style={{
-                fontFamily: "'Oxanium', sans-serif",
-                fontSize: "clamp(16px, 1.6vw, 22px)",
-                fontWeight: 600,
-                color: "#fff",
+                fontFamily: "'Fredoka', sans-serif",
+                fontSize: "clamp(16px, 1.4vw, 22px)",
+                fontWeight: 700,
+                color: "var(--color-dark)",
                 marginBottom: "16px",
               }}>
-                Experience
+                Experience Details
               </h3>
               <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
                 {job.bullets.map((b, i) => (
-                  <li key={i} style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
-                    <span style={{ color: "rgba(255,255,255,0.5)", marginTop: "2px", flexShrink: 0 }}>›</span>
+                  <li key={i} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
                     <span style={{
-                      fontFamily: "'Oxanium', sans-serif",
-                      fontSize: "clamp(13px, 1.3vw, 17px)",
-                      color: "rgba(255,255,255,0.8)",
+                      display: "inline-block",
+                      width: "8px",
+                      height: "8px",
+                      borderRadius: "50%",
+                      background: "var(--color-rose)",
+                      border: "1.5px solid var(--color-dark)",
+                      marginTop: "7px",
+                      flexShrink: 0
+                    }} />
+                    <span style={{
+                      fontFamily: "'Outfit', sans-serif",
+                      fontSize: "clamp(13px, 1.25vw, 17px)",
+                      color: "var(--color-dark)",
+                      opacity: 0.85,
                       lineHeight: 1.55,
                     }}>
                       {b}
@@ -175,7 +161,7 @@ export default function WorkPage() {
 
           {/* ─── Divider ─── */}
           <div style={{
-            background: "rgba(255,255,255,0.12)",
+            background: "var(--border-color)",
             margin: "80px 0",
           }} />
 
@@ -185,22 +171,23 @@ export default function WorkPage() {
             display: "flex",
             flexDirection: "column",
             overflow: "hidden",
+            background: "var(--color-light-down)",
           }}>
             <div style={{
-              padding: "10vh 7% 0 6%",
+              padding: "10vh 7% 0 8%",
             }}>
               <h3 style={{
-                fontFamily: "'Oxanium', sans-serif",
-                fontSize: "clamp(14px, 1.4vw, 20px)",
-                fontWeight: 600,
-                color: "#fff",
-                letterSpacing: "0.04em",
+                fontFamily: "'Fredoka', sans-serif",
+                fontSize: "clamp(15px, 1.5vw, 22px)",
+                fontWeight: 700,
+                color: "var(--color-dark)",
+                letterSpacing: "0.02em",
               }}>
-                Technical Skills
+                Technical Skills Canvas
               </h3>
             </div>
             <div style={{ flex: 1, position: "relative", minHeight: 0 }}>
-              <PhysicsBubbles key={current} />
+              <PhysicsBubbles key={current} skills={job.skills} />
             </div>
           </div>
         </motion.div>
@@ -213,7 +200,7 @@ export default function WorkPage() {
         left: "50%",
         transform: "translateX(-50%)",
         display: "flex",
-        gap: "10px",
+        gap: "12px",
         alignItems: "center",
       }}>
         {JOBS.map((_, i) => (
@@ -222,14 +209,15 @@ export default function WorkPage() {
             onClick={() => setCurrent(i)}
             aria-label={`Slide ${i + 1}`}
             style={{
-              width: i === current ? "40px" : "28px",
-              height: "8px",
-              borderRadius: "4px",
-              background: i === current ? "#fff" : "rgba(255,255,255,0.35)",
-              border: "none",
+              width: i === current ? "42px" : "28px",
+              height: "12px",
+              borderRadius: "9999px",
+              background: i === current ? "var(--color-mint)" : "var(--color-light-down)",
+              border: "var(--border-width) solid var(--color-dark)",
+              boxShadow: i === current ? "2px 2px 0px var(--color-dark)" : "1px 1px 0px var(--color-dark)",
               cursor: "pointer",
               padding: 0,
-              transition: "all 0.3s ease",
+              transition: "all 0.25s ease",
             }}
           />
         ))}

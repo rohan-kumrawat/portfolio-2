@@ -1,16 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 
 export default function AboutPage() {
+  const tagColors = [
+    "var(--color-mint)",
+    "var(--color-lilac)",
+    "var(--color-peach)",
+    "var(--color-rose)",
+    "var(--color-sherbet)"
+  ];
+
   return (
     <div style={{
       width: "100%",
       height: "100vh",
       display: "grid",
-      gridTemplateColumns: "1fr 1px 1fr",
+      gridTemplateColumns: "1fr var(--border-width) 1fr",
       overflow: "hidden",
+      background: "var(--color-light-fade)",
+      color: "var(--color-dark)",
     }}>
 
       {/* ─── Left: Bio ─── */}
@@ -23,30 +32,31 @@ export default function AboutPage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          gap: "20px",
+          gap: "24px",
         }}
       >
         <div>
           <p style={{
-            fontFamily: "'Oxanium', sans-serif",
-            fontSize: "clamp(22px, 2.2vw, 32px)",
-            fontWeight: 600,
-            color: "#fff",
+            fontFamily: "'Fredoka', sans-serif",
+            fontSize: "clamp(24px, 2.2vw, 36px)",
+            fontWeight: 700,
+            color: "var(--color-dark)",
             marginBottom: "20px",
           }}>
             Hi, I&apos;m Rohan!
           </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
             {[
-              "Glad to have you here. I'm a Full Stack Developer and Software Engineer who loves building products that are fast, reliable, and a joy to use.",
-              "I specialize in designing scalable systems — from high-throughput backends and real-time services to polished frontend experiences. I care deeply about the craft.",
-              "I've worked across fintech, SaaS, and digital agencies, building platforms from the ground up and optimizing systems for performance and correctness.",
-              "Question, Design — question Design — Build / Experience. That's how I see software. If anything out here looks interesting, feel free to reach out!",
+              "Glad to have you here. I'm a Full Stack Developer with 2+ years of experience specializing in building production-grade applications in healthcare and fintech.",
+              "I specialize in designing scalable systems — from strict multi-tenant SaaS architectures with secure centre-level data isolation to high-throughput backends and real-time dashboards.",
+              "I've worked extensively with fintech, healthcare, and e-commerce projects, owning the full delivery cycle: backend design, REST APIs, databases, payment gateways, and cloud deployment.",
+              "Question, Design & Build. That's how I see software. If anything out here looks interesting, feel free to reach out!",
             ].map((para, i) => (
               <p key={i} style={{
-                fontFamily: "'Oxanium', sans-serif",
-                fontSize: "clamp(13px, 1.35vw, 18px)",
-                color: "rgba(255,255,255,0.72)",
+                fontFamily: "'Outfit', sans-serif",
+                fontSize: "clamp(14px, 1.3vw, 18px)",
+                color: "var(--color-dark)",
+                opacity: 0.85,
                 lineHeight: 1.65,
               }}>
                 {para}
@@ -56,11 +66,11 @@ export default function AboutPage() {
         </div>
 
         {/* Social links */}
-        <div style={{ display: "flex", gap: "16px", marginTop: "8px" }}>
-          <SocialLink href="https://github.com" label="GitHub">
+        <div style={{ display: "flex", gap: "20px", marginTop: "12px" }}>
+          <SocialLink href="https://github.com/rohan-kumrawat" label="GitHub" color="var(--color-mint)">
             <GitHubIcon />
           </SocialLink>
-          <SocialLink href="https://linkedin.com" label="LinkedIn">
+           <SocialLink href="https://www.linkedin.com/in/rohankumrawat/" label="LinkedIn" color="var(--color-lilac)">
             <LinkedInIcon />
           </SocialLink>
         </div>
@@ -68,11 +78,11 @@ export default function AboutPage() {
 
       {/* ─── Divider ─── */}
       <div style={{
-        background: "rgba(255,255,255,0.12)",
+        background: "var(--border-color)",
         margin: "80px 0",
       }} />
 
-      {/* ─── Right: Brand Mark ─── */}
+      {/* ─── Right: Brand Mark & Stack ─── */}
       <motion.div
         initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 1, x: 0 }}
@@ -82,7 +92,7 @@ export default function AboutPage() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "flex-start",
-          padding: "0 8% 0 8%",
+          padding: "0 9% 0 8%",
           gap: "40px",
         }}
       >
@@ -94,39 +104,51 @@ export default function AboutPage() {
         {/* Decorative line separator */}
         <div style={{
           width: "100%",
-          height: "1px",
-          background: "rgba(255,255,255,0.15)",
+          height: "var(--border-width)",
+          background: "var(--border-color)",
         }} />
 
-        {/* Tech philosophy quote */}
-        <div>
+        {/* Tech Stack */}
+        <div style={{ width: "100%" }}>
           <p style={{
             fontFamily: "'Space Mono', monospace",
-            fontSize: "clamp(11px, 1vw, 14px)",
-            color: "rgba(255,255,255,0.35)",
+            fontSize: "clamp(12px, 1vw, 14px)",
+            fontWeight: 700,
+            color: "var(--color-dark)",
+            opacity: 0.5,
             lineHeight: 1.7,
-            letterSpacing: "0.04em",
+            letterSpacing: "0.06em",
+            marginBottom: "16px",
           }}>
             // STACK
           </p>
           <div style={{
             display: "flex",
             flexWrap: "wrap",
-            gap: "8px",
-            marginTop: "12px",
+            gap: "10px",
           }}>
-            {["Next.js", "TypeScript", "NestJS", "PostgreSQL", "Docker", "Redis", "AWS", "Prisma"].map((tech) => (
-              <span key={tech} style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: "clamp(10px, 0.9vw, 13px)",
-                color: "rgba(255,255,255,0.55)",
-                border: "1px solid rgba(255,255,255,0.18)",
-                borderRadius: "4px",
-                padding: "4px 10px",
-                letterSpacing: "0.04em",
-              }}>
+            {["NestJS", "Next.js", "React", "TypeScript", "PostgreSQL", "TypeORM", "Node.js", "Docker", "Tailwind CSS", "Zustand", "AWS Lightsail", "Railway", "Razorpay"].map((tech, idx) => (
+              <motion.span
+                key={tech}
+                whileHover={{ scale: 1.08, rotate: idx % 2 === 0 ? 1.5 : -1.5 }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                style={{
+                  fontFamily: "'Space Mono', monospace",
+                  fontSize: "clamp(11px, 0.9vw, 13px)",
+                  fontWeight: 700,
+                  color: "var(--color-dark)",
+                  background: tagColors[idx % tagColors.length],
+                  border: "var(--border-width) solid var(--border-color)",
+                  borderRadius: "9999px",
+                  padding: "6px 14px",
+                  letterSpacing: "0.02em",
+                  boxShadow: "2px 2px 0px var(--border-color)",
+                  display: "inline-block",
+                  cursor: "default",
+                }}
+              >
                 {tech}
-              </span>
+              </motion.span>
             ))}
           </div>
         </div>
@@ -153,33 +175,37 @@ function BrandMark() {
         fill="none"
         style={{ flexShrink: 0 }}
       >
-        <line x1="20" y1="90" x2="70" y2="10" stroke="white" strokeWidth="7" strokeLinecap="round" />
-        <line x1="55" y1="10" x2="90" y2="10" stroke="white" strokeWidth="7" strokeLinecap="round" />
-        <line x1="90" y1="10" x2="90" y2="40" stroke="white" strokeWidth="7" strokeLinecap="round" />
+        <line x1="20" y1="90" x2="70" y2="10" stroke="var(--color-dark)" strokeWidth="7.5" strokeLinecap="round" />
+        <line x1="55" y1="10" x2="90" y2="10" stroke="var(--color-dark)" strokeWidth="7.5" strokeLinecap="round" />
+        <line x1="90" y1="10" x2="90" y2="40" stroke="var(--color-dark)" strokeWidth="7.5" strokeLinecap="round" />
       </svg>
 
       {/* # symbol */}
       <span style={{
-        fontFamily: "'Oxanium', sans-serif",
-        fontSize: "clamp(40px, 6vw, 90px)",
-        fontWeight: 800,
-        color: "#fff",
+        fontFamily: "'Fredoka', sans-serif",
+        fontSize: "clamp(44px, 6vw, 94px)",
+        fontWeight: 700,
+        color: "var(--color-rose)",
         paddingBottom: "4px",
+        marginLeft: "6px",
       }}>
         #
       </span>
 
-      {/* Orange box with number */}
+      {/* Retro Brutalist box with number */}
       <span style={{
         display: "inline-block",
-        background: "#ff6b00",
-        color: "#fff",
-        fontFamily: "'Oxanium', sans-serif",
-        fontSize: "clamp(40px, 6vw, 90px)",
-        fontWeight: 800,
-        padding: "0 12px 4px",
-        marginLeft: "4px",
-        lineHeight: 1.1,
+        background: "var(--color-mint)",
+        color: "var(--color-dark)",
+        fontFamily: "'Fredoka', sans-serif",
+        fontSize: "clamp(40px, 5.5vw, 86px)",
+        fontWeight: 700,
+        padding: "4px 18px 6px",
+        marginLeft: "6px",
+        lineHeight: 1.05,
+        border: "var(--border-width) solid var(--color-dark)",
+        borderRadius: "16px",
+        boxShadow: "4px 4px 0px var(--color-dark)",
       }}>
         01
       </span>
@@ -192,42 +218,43 @@ function SocialLink({
   href,
   label,
   children,
+  color,
 }: {
   href: string;
   label: string;
   children: React.ReactNode;
+  color: string;
 }) {
   return (
-    <a
+    <motion.a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
+      whileHover={{ translateX: -2, translateY: -2 }}
       style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        width: "40px",
-        height: "40px",
-        border: "1px solid rgba(255,255,255,0.25)",
-        borderRadius: "8px",
-        color: "rgba(255,255,255,0.7)",
-        transition: "all 0.2s ease",
+        width: "44px",
+        height: "44px",
+        border: "var(--border-width) solid var(--border-color)",
+        borderRadius: "50%",
+        color: "var(--color-dark)",
+        background: color,
+        boxShadow: "3px 3px 0px var(--border-color)",
+        transition: "box-shadow 0.2s ease",
         textDecoration: "none",
       }}
       onMouseEnter={(e) => {
-        (e.currentTarget as HTMLAnchorElement).style.color = "#fff";
-        (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.6)";
-        (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.08)";
+        e.currentTarget.style.boxShadow = "5px 5px 0px var(--border-color)";
       }}
       onMouseLeave={(e) => {
-        (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.7)";
-        (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.25)";
-        (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
+        e.currentTarget.style.boxShadow = "3px 3px 0px var(--border-color)";
       }}
     >
       {children}
-    </a>
+    </motion.a>
   );
 }
 

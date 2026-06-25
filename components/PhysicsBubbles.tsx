@@ -11,17 +11,24 @@ interface Bubble {
   label: string;
   rotation: number;
   rotSpeed: number;
+  color: string;
 }
 
-const SKILLS = [
+const DEFAULT_SKILLS = [
   "Next.js", "TypeScript", "React", "Node.js",
   "PostgreSQL", "MongoDB", "Docker", "Redis",
   "NestJS", "Prisma", "GraphQL", "AWS",
 ];
 
-const BASE_RADII = [52, 44, 38, 60, 42, 56, 40, 48, 36, 54, 46, 50];
+const PASTEL_COLORS = [
+  "#6fdcbf", // mint
+  "#ad8fdb", // lilac
+  "#ffbe9f", // peach
+  "#f09bb0", // rose
+  "#fff5a9", // sherbet
+];
 
-export default function PhysicsBubbles() {
+export default function PhysicsBubbles({ skills }: { skills?: string[] }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const bubblesRef = useRef<Bubble[]>([]);
   const rafRef = useRef<number>(0);
@@ -38,8 +45,10 @@ export default function PhysicsBubbles() {
     };
 
     const init = () => {
-      bubblesRef.current = SKILLS.map((label, i) => {
-        const r = BASE_RADII[i % BASE_RADII.length];
+      const skillList = skills && skills.length > 0 ? skills : DEFAULT_SKILLS;
+      bubblesRef.current = skillList.map((label, i) => {
+        // Calculate radius dynamically based on label length to prevent text overflow
+        const r = Math.max(34, Math.min(68, label.length * 4.8 + 14));
         return {
           x: r + Math.random() * (canvas.width - 2 * r),
           y: r + Math.random() * (canvas.height - 2 * r),
@@ -49,6 +58,7 @@ export default function PhysicsBubbles() {
           label,
           rotation: Math.random() * Math.PI * 2,
           rotSpeed: (Math.random() - 0.5) * 0.006,
+          color: PASTEL_COLORS[i % PASTEL_COLORS.length],
         };
       });
     };
@@ -61,7 +71,7 @@ export default function PhysicsBubbles() {
           const dx = b.x - a.x;
           const dy = b.y - a.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const minDist = a.radius + b.radius + 4;
+          const minDist = a.radius + b.radius + 6; // slightly extra padding for thick borders
           if (dist < minDist && dist > 0) {
             const nx = dx / dist, ny = dy / dist;
             const overlap = (minDist - dist) / 2;
@@ -102,19 +112,27 @@ export default function PhysicsBubbles() {
         ctx.translate(b.x, b.y);
         ctx.rotate(b.rotation);
 
-        // Circle
+        // 1. Draw Flat Retro Shadow (slightly shifted down-right)
+        ctx.beginPath();
+        ctx.arc(3, 3, b.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "#303145";
+        ctx.fill();
+
+        // 2. Draw Sticker Bubble
         ctx.beginPath();
         ctx.arc(0, 0, b.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = "rgba(255,255,255,0.85)";
-        ctx.lineWidth = 1.2;
-        ctx.fillStyle = "rgba(255,255,255,0.06)";
+        ctx.fillStyle = b.color;
         ctx.fill();
+
+        // 3. Draw Thick Outline
+        ctx.strokeStyle = "#303145";
+        ctx.lineWidth = 2.5;
         ctx.stroke();
 
-        // Label
-        ctx.rotate(-b.rotation); // keep text upright-ish but allow slight tilt
-        ctx.fillStyle = "#ffffff";
-        ctx.font = `${Math.max(10, b.radius * 0.32)}px 'Oxanium', sans-serif`;
+        // 4. Label
+        ctx.rotate(-b.rotation); // keep text upright-ish
+        ctx.fillStyle = "#303145";
+        ctx.font = `bold ${Math.max(10, b.radius * 0.28)}px 'Fredoka', sans-serif`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.fillText(b.label, 0, 0);
