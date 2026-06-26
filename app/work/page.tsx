@@ -73,21 +73,10 @@ export default function WorkPage() {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -40 }}
           transition={{ duration: 0.35, ease: "easeInOut" }}
-          style={{
-            width: "100%",
-            height: "100vh",
-            display: "grid",
-            gridTemplateColumns: "1fr var(--border-width) 1fr",
-          }}
+          className="slider-page-grid"
         >
           {/* ─── Left: Job Info ─── */}
-          <div style={{
-            padding: "10vh 7% 12vh 9%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            gap: "24px",
-          }}>
+          <div className="slider-page-left">
             <div>
               <h2 style={{
                 fontFamily: "'Fredoka', sans-serif",
@@ -159,23 +148,12 @@ export default function WorkPage() {
             </div>
           </div>
 
-          {/* ─── Divider ─── */}
-          <div style={{
-            background: "var(--border-color)",
-            margin: "80px 0",
-          }} />
+          {/* ─── Divider (hidden on mobile) ─── */}
+          <div className="slider-page-divider" />
 
           {/* ─── Right: Skill Bubbles ─── */}
-          <div style={{
-            position: "relative",
-            display: "flex",
-            flexDirection: "column",
-            overflow: "hidden",
-            background: "var(--color-light-down)",
-          }}>
-            <div style={{
-              padding: "10vh 7% 0 8%",
-            }}>
+          <div className="slider-page-right">
+            <div className="slider-page-right-header">
               <h3 style={{
                 fontFamily: "'Fredoka', sans-serif",
                 fontSize: "clamp(15px, 1.5vw, 22px)",
@@ -186,7 +164,7 @@ export default function WorkPage() {
                 Technical Skills Canvas
               </h3>
             </div>
-            <div style={{ flex: 1, position: "relative", minHeight: 0 }}>
+            <div className="slider-page-right-canvas">
               <PhysicsBubbles key={current} skills={job.skills} />
             </div>
           </div>
@@ -194,15 +172,7 @@ export default function WorkPage() {
       </AnimatePresence>
 
       {/* ─── Dot navigation ─── */}
-      <div style={{
-        position: "absolute",
-        bottom: "5%",
-        left: "50%",
-        transform: "translateX(-50%)",
-        display: "flex",
-        gap: "12px",
-        alignItems: "center",
-      }}>
+      <div className="slider-dots">
         {JOBS.map((_, i) => (
           <button
             key={i}
@@ -221,6 +191,29 @@ export default function WorkPage() {
             }}
           />
         ))}
+      </div>
+
+      {/* ─── Mobile prev/next row (visible only on mobile) ─── */}
+      <div className="slider-mobile-nav">
+        <button
+          className="slider-mobile-btn"
+          onClick={prev}
+          disabled={current === 0}
+          aria-label="Previous job"
+        >
+          ← Prev
+        </button>
+        <span className="slider-mobile-counter">
+          {current + 1} / {JOBS.length}
+        </span>
+        <button
+          className="slider-mobile-btn"
+          onClick={next}
+          disabled={current === JOBS.length - 1}
+          aria-label="Next job"
+        >
+          Next →
+        </button>
       </div>
     </div>
   );

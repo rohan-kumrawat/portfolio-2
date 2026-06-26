@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ThemeToggle from "./ThemeToggle";
 
 const links = [
@@ -12,7 +12,7 @@ const links = [
   { label: "About", href: "/about" },
 ];
 
-function NavbarPill({ href, label, isActive }: { href: string; label: string; isActive: boolean }) {
+function NavbarPill({ href, label, isActive, onClick }: { href: string; label: string; isActive: boolean; onClick?: () => void }) {
   const [isHovered, setIsHovered] = useState(false);
 
   const baseStyle: React.CSSProperties = {
@@ -61,6 +61,7 @@ function NavbarPill({ href, label, isActive }: { href: string; label: string; is
       style={currentStyle}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={onClick}
     >
       <span>{label}</span>
     </Link>
@@ -69,6 +70,24 @@ function NavbarPill({ href, label, isActive }: { href: string; label: string; is
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
 
   return (
     <>
@@ -110,25 +129,9 @@ export default function Navbar() {
           />
         </svg>
       </Link>
-      <nav
-        style={{
-          position: "fixed",
-          top: "24px",
-          right: "36px",
-          zIndex: 200,
-          display: "flex",
-          alignItems: "center",
-          gap: "8px",
-          padding: "6px 12px",
-          background: "var(--color-nav-bg)",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
-          border: "var(--border-width) solid var(--border-color)",
-          borderRadius: "9999px",
-          boxShadow: "4px 4px 0px var(--border-color)",
-          transition: "background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease",
-        }}
-      >
+
+      {/* ─── Desktop Navbar ─── */}
+      <nav className="navbar-desktop">
         {links.map((link) => (
           <NavbarPill
             key={link.href}
@@ -139,6 +142,41 @@ export default function Navbar() {
         ))}
         <ThemeToggle />
       </nav>
+
+      {/* ─── Mobile Hamburger Button ─── */}
+      <button
+        className="mobile-menu-btn"
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        aria-label="Toggle mobile menu"
+        aria-expanded={mobileMenuOpen}
+      >
+        <div className={`hamburger-icon ${mobileMenuOpen ? "open" : ""}`}>
+          <span />
+          <span />
+          <span />
+        </div>
+      </button>
+
+      {/* ─── Mobile Menu Overlay ─── */}
+      <div className={`mobile-menu-overlay ${mobileMenuOpen ? "open" : ""}`}>
+        <div className="mobile-menu-content">
+          <nav className="mobile-menu-nav">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`mobile-menu-link ${pathname === link.href ? "active" : ""}`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <div className="mobile-menu-footer">
+            <ThemeToggle />
+          </div>
+        </div>
+      </div>
     </>
   );
 }

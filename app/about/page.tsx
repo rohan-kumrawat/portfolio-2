@@ -12,28 +12,14 @@ export default function AboutPage() {
   ];
 
   return (
-    <div style={{
-      width: "100%",
-      height: "100vh",
-      display: "grid",
-      gridTemplateColumns: "1fr var(--border-width) 1fr",
-      overflow: "hidden",
-      background: "var(--color-light-fade)",
-      color: "var(--color-dark)",
-    }}>
+    <div className="about-page-root">
 
       {/* ─── Left: Bio ─── */}
       <motion.div
         initial={{ opacity: 0, x: -30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        style={{
-          padding: "0 8% 0 9%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          gap: "24px",
-        }}
+        className="about-col-left"
       >
         <div>
           <p style={{
@@ -77,24 +63,14 @@ export default function AboutPage() {
       </motion.div>
 
       {/* ─── Divider ─── */}
-      <div style={{
-        background: "var(--border-color)",
-        margin: "80px 0",
-      }} />
+      <div className="about-divider" />
 
       {/* ─── Right: Brand Mark & Stack ─── */}
       <motion.div
         initial={{ opacity: 0, x: 30 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "flex-start",
-          padding: "0 9% 0 8%",
-          gap: "40px",
-        }}
+        className="about-col-right"
       >
         {/* Main brand mark */}
         <div>

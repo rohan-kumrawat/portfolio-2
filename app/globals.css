@@ -100,6 +100,16 @@ html, body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
+/* ─── Mobile: re-enable native scroll (desktop uses overflow:hidden + internal panel scroll) ─── */
+@media (max-width: 767px) {
+  html, body {
+    height: auto;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}
+
 /* ─── Viewport Border ─── */
 .viewport-border {
   position: fixed;
@@ -110,6 +120,13 @@ html, body {
   border-radius: 20px;
   background: transparent;
   transition: border-color 0.3s ease;
+}
+
+@media (max-width: 767px) {
+  .viewport-border {
+    inset: 8px;
+    border-radius: 14px;
+  }
 }
 
 /* ─── Navigation ─── */
@@ -145,8 +162,8 @@ html, body {
   box-shadow: 5px 5px 0px var(--border-color);
 }
 
-/* ─── Floating Navbar Capsule Container ─── */
-.navbar-container {
+/* ─── Desktop Navbar Capsule ─── */
+.navbar-desktop {
   position: fixed;
   top: 24px;
   right: 36px;
@@ -164,28 +181,141 @@ html, body {
   transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Specific overrides for pills nested inside the navbar container */
-.navbar-container .nav-pill {
-  box-shadow: none;
-  border-color: transparent;
-  background: transparent;
-  padding: 6px 16px;
-  font-size: 14px;
-  transform: none;
+@media (max-width: 767px) {
+  .navbar-desktop {
+    display: none;
+  }
 }
 
-.navbar-container .nav-pill.active {
+/* ─── Mobile Hamburger Button ─── */
+.mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 300;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: var(--border-width) solid var(--border-color);
+  background: var(--color-nav-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 3px 3px 0px var(--border-color);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (max-width: 767px) {
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Hamburger icon lines */
+.hamburger-icon {
+  width: 22px;
+  height: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger-icon span {
+  display: block;
+  width: 100%;
+  height: 2.5px;
+  background: var(--border-color);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.hamburger-icon.open span:nth-child(1) {
+  transform: translateY(6.75px) rotate(45deg);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger-icon.open span:nth-child(3) {
+  transform: translateY(-6.75px) rotate(-45deg);
+}
+
+/* ─── Mobile Menu Overlay ─── */
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 250;
+  background: var(--color-light-fade);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+@media (max-width: 767px) {
+  .mobile-menu-overlay {
+    display: block;
+  }
+  .mobile-menu-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.mobile-menu-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 32px 60px;
+  gap: 48px;
+}
+
+.mobile-menu-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.mobile-menu-link {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--border-color);
+  text-decoration: none;
+  padding: 12px 40px;
+  border-radius: 9999px;
+  border: var(--border-width) solid transparent;
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.mobile-menu-link.active {
   background: var(--color-mint);
   border-color: var(--border-color);
-  box-shadow: 3px 3px 0px var(--border-color);
+  box-shadow: 4px 4px 0px var(--border-color);
   transform: translate(-2px, -2px);
 }
 
-.navbar-container .nav-pill.inactive:hover {
+.mobile-menu-link:not(.active):active {
   background: var(--color-sherbet);
   border-color: var(--border-color);
-  box-shadow: 3px 3px 0px var(--border-color);
-  transform: translate(-2px, -2px);
+}
+
+.mobile-menu-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -837,6 +967,13 @@ html.night .skills-section {
   overflow: hidden;
 }
 
+@media (max-width: 799px) {
+  .hero-container {
+    height: auto;
+    min-height: 100vh;
+  }
+}
+
 @media (min-width: 800px) {
   .hero-container::after {
     content: "";
@@ -859,6 +996,13 @@ html.night .skills-section {
   height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 799px) {
+  .hero-inner {
+    height: auto;
+    min-height: 100vh;
+  }
 }
 
 @media (min-width: 800px) {
@@ -895,6 +1039,14 @@ html.night .skills-section {
   overflow: hidden;
 }
 
+@media (max-width: 799px) {
+  .hero-svg-wrapper {
+    max-height: 50vh;
+    padding: 80px 20px 20px;
+    align-items: center;
+  }
+}
+
 @media (min-width: 800px) {
   .hero-svg-wrapper {
     width: 51%; /* Desktop layout occupies left 51% */
@@ -917,6 +1069,13 @@ html.night .skills-section {
   z-index: 2;
   background-color: var(--color-mint); /* Stack copy with mint bg on mobile */
   transition: background 0.3s ease;
+}
+
+@media (max-width: 799px) {
+  .hero-content-wrapper {
+    padding: 32px 24px 48px;
+    flex: 1;
+  }
 }
 
 @media (min-width: 800px) {
@@ -945,12 +1104,12 @@ html.night .skills-section {
   transform: rotate(-3deg) scale(1.06);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   .brand-logo {
-    top: 16px;
-    left: 20px;
-    width: 200px;
-    height: 48px;
+    top: 14px;
+    left: 16px;
+    width: 180px;
+    height: 44px;
   }
 }
 
@@ -1042,5 +1201,291 @@ html.night .skills-section {
   -webkit-text-fill-color: var(--border-color);
 }
 
+/* ─── Mobile Slider Prev/Next Navigation ─── */
+/* Hidden on desktop, shown on mobile below dots */
+.slider-mobile-nav {
+  display: none;
+}
 
+@media (max-width: 767px) {
+  .slider-mobile-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 6% 32px;
+    background: var(--color-light-down);
+    border-top: 1px solid var(--border-color);
+    gap: 16px;
+  }
 
+  .slider-mobile-btn {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 9999px;
+    border: var(--border-width) solid var(--border-color);
+    background: var(--color-light);
+    color: var(--color-dark);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 2px 2px 0px var(--border-color);
+  }
+
+  .slider-mobile-btn:hover:not(:disabled) {
+    background: var(--color-mint);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--border-color);
+  }
+
+  .slider-mobile-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .slider-mobile-counter {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-dark);
+    opacity: 0.6;
+    letter-spacing: 0.05em;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MOBILE RESPONSIVE OVERRIDES (< 768px)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 767px) {
+  /* ── Projects Section Mobile ── */
+  #projects-section {
+    padding: 60px 6% 80px 6% !important;
+  }
+
+  .projects-layout-container {
+    margin-top: 32px !important;
+  }
+
+  .project-card-title {
+    font-size: 20px !important;
+  }
+
+  /* ── Skills Section Mobile ── */
+  .skills-section {
+    padding: 60px 6% 80px 6%;
+  }
+
+  .skills-image-card {
+    max-width: 240px;
+  }
+
+  /* ── Contact Section Mobile ── */
+  .contact-section {
+    padding: 60px 5% 80px 5%;
+  }
+
+  .contact-card {
+    padding: 32px 20px;
+    gap: 24px;
+    border-radius: 18px;
+  }
+
+  .contact-blob {
+    max-width: 180px;
+  }
+
+  .contact-overlapping-title {
+    font-size: clamp(32px, 10vw, 60px);
+    bottom: -28px;
+    left: 16px;
+  }
+
+  /* ── General Font Size Adjustments ── */
+  .skills-item-desc {
+    font-size: 14px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SLIDER PAGES (Projects / Work) — Desktop & Mobile
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.slider-page-grid {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr var(--border-width) 1fr;
+}
+
+.slider-page-left {
+  padding: 10vh 7% 12vh 9%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  overflow-y: auto;
+}
+
+.slider-page-divider {
+  background: var(--border-color);
+  margin: 80px 0;
+}
+
+.slider-page-right {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-light-down);
+}
+
+.slider-page-right-header {
+  padding: 10vh 7% 0 8%;
+}
+
+.slider-page-right-canvas {
+  flex: 1;
+  position: relative;
+  min-height: 0;
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  z-index: 10;
+}
+
+@media (max-width: 767px) {
+  /* Make the entire page scrollable on mobile */
+  .work-page-root {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  /* Hide left/right slider arrows on mobile — use dots only */
+  .slider-arrow {
+    display: none;
+  }
+
+  /* Stack the grid vertically */
+  .slider-page-grid {
+    height: auto;
+    min-height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  /* Left column: give it breathing room below the fixed navbar */
+  .slider-page-left {
+    padding: 96px 6% 40px 6%;
+    justify-content: flex-start;
+    overflow-y: visible;
+    /* Remove fixed height constraints */
+    height: auto;
+  }
+
+  /* Remove vertical divider on mobile */
+  .slider-page-divider {
+    display: none;
+  }
+
+  /* Right (skills bubble) column */
+  .slider-page-right {
+    min-height: 320px;
+    height: 320px;
+    border-top: var(--border-width) solid var(--border-color);
+    overflow: hidden;
+  }
+
+  .slider-page-right-header {
+    padding: 24px 6% 0;
+  }
+
+  /* Dot nav sits naturally at bottom of the skill bubble column */
+  .slider-dots {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    justify-content: center;
+    padding: 20px 0 32px;
+    background: var(--color-light-down);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ABOUT PAGE — Desktop & Mobile
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.about-page-root {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr var(--border-width) 1fr;
+  overflow: hidden;
+  background: var(--color-light-fade);
+  color: var(--color-dark);
+}
+
+.about-col-left {
+  padding: 0 8% 0 9%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  overflow-y: auto;
+}
+
+.about-divider {
+  background: var(--border-color);
+  margin: 80px 0;
+}
+
+.about-col-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 9% 0 8%;
+  gap: 40px;
+  overflow-y: auto;
+}
+
+@media (max-width: 767px) {
+  .about-page-root {
+    height: auto;
+    min-height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .about-col-left {
+    padding: 96px 6% 40px 6%;
+    justify-content: flex-start;
+    overflow-y: visible;
+  }
+
+  .about-divider {
+    display: none;
+  }
+
+  .about-col-right {
+    padding: 32px 6% 80px 6%;
+    border-top: var(--border-width) solid var(--border-color);
+    background: var(--color-light-down);
+    overflow-y: visible;
+    /* Give footer elements enough room */
+    gap: 32px;
+  }
+}

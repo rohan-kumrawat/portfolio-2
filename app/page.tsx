@@ -133,7 +133,7 @@ export default function Home() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "flex-start",
-                margin: "66px",
+                margin: "clamp(24px, 5vw, 66px)",
               }}
             >
               <span
