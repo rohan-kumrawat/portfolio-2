@@ -762,7 +762,7 @@ html.night .skills-section {
   border: var(--border-width) solid var(--border-color);
   border-radius: 16px;
   box-shadow: 6px 6px 0px var(--border-color);
-  overflow: visible;
+  overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -784,6 +784,24 @@ html.night .skills-section {
 
 .skills-image-card:hover img {
   filter: grayscale(0.2) contrast(1.05);
+}
+
+/* Laptop illustration override — no grayscale, solid white bg image fills card */
+.skills-laptop-img {
+  object-fit: contain !important;
+  filter: none !important;
+  padding: 12px;
+  background: #ffffff !important;
+  border-radius: 0;
+}
+
+.night .skills-laptop-img,
+html.night .skills-laptop-img {
+  background: #ffffff !important;
+}
+
+.skills-image-card:hover .skills-laptop-img {
+  filter: none !important;
 }
 
 /* 3D Offset outline element behind the card */

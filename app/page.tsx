@@ -604,11 +604,11 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right Column: Sticky Graphic Card */}
+          {/* Right Column: Sticky Laptop Illustration */}
           <div className="skills-col-right">
             <div className="skills-image-card">
-              <span className="skills-badge">FULL STACK</span>
-              <img src="/rohan_avatar.png" alt="Rohan Kumrawat" />
+              <span className="skills-badge">&lt; code /&gt;</span>
+              <img src="/skills_laptop.png" alt="Coding laptop illustration" className="skills-laptop-img" />
             </div>
           </div>
         </div>
