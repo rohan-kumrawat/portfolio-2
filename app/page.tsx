@@ -133,6 +133,7 @@ export default function Home() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "flex-start",
+                margin: "66px",
               }}
             >
               <span
@@ -584,7 +585,7 @@ export default function Home() {
               <span className="skills-intro-label">what I bring to the table</span>
               <h2 className="skills-heading">Skills.</h2>
             </div>
-            
+
             <p className="skills-description">
               Over the last 2+ years, I&apos;ve focused on designing and scaling backend SaaS architectures, building robust React interfaces, and delivering complete applications in healthcare and fintech.
             </p>
@@ -629,7 +630,7 @@ export default function Home() {
               <a href="mailto:rohan@kumrawat.com" className="contact-email-link">
                 Pop me an email
               </a>{" "}
-              at rohan@kumrawat.com or give me a shout on social media.
+              at rohankumrawat.dev@gmail.com or give me a shout on social media.
             </p>
 
             <div className="contact-socials-row">

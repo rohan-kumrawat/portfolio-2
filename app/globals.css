@@ -864,8 +864,23 @@ html.night .skills-section {
 @media (min-width: 800px) {
   .hero-inner {
     flex-direction: row;
-    align-items: stretch;
+    align-items: center;
     justify-content: flex-start;
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 5%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-inner {
+    padding: 0 8%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .hero-inner {
+    padding: 0 128px;
   }
 }
 
@@ -886,6 +901,9 @@ html.night .skills-section {
     height: 100vh;
     padding: 0;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
   }
 }
 
@@ -905,7 +923,7 @@ html.night .skills-section {
   .hero-content-wrapper {
     width: 49%; /* Desktop layout occupies right 49% */
     height: 100vh;
-    padding: 0 10% 0 6%;
+    padding: 96px 0;
     background-color: transparent; /* Transparent to let split background show through */
   }
 }

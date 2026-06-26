@@ -3,12 +3,12 @@
 export default function DeskIllustration() {
   return (
     <svg
-      viewBox="0 0 600 600"
+      viewBox="-40 0 540 600"
       width="100%"
       height="100%"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      preserveAspectRatio="xMidYMid meet"
+      preserveAspectRatio="xMinYMid meet"
       style={{ display: "block", flex: 1 }}
     >
       <defs>
@@ -140,9 +140,9 @@ export default function DeskIllustration() {
 
       {/* ─── Main Desk Table ─── */}
       <line
-        x1="40"
+        x1="0"
         y1="490"
-        x2="560"
+        x2="500"
         y2="490"
         stroke="var(--border-color)"
         strokeWidth="12"
