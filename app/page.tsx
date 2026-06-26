@@ -604,11 +604,105 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right Column: Sticky Laptop Illustration */}
+          {/* Right Column: Sticky SVG Code Illustration */}
           <div className="skills-col-right">
-            <div className="skills-image-card">
+            <div className="skills-svg-card">
               <span className="skills-badge">&lt; code /&gt;</span>
-              <img src="/skills_laptop.png" alt="Coding laptop illustration" className="skills-laptop-img" />
+
+              {/* Floating code editor window SVG */}
+              <svg
+                viewBox="0 0 320 320"
+                width="100%"
+                height="100%"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-label="Code editor illustration"
+              >
+                {/* ── Offset shadow layer ── */}
+                <rect x="18" y="18" width="270" height="210" rx="14" fill="var(--border-color)" opacity="0.18" />
+
+                {/* ── Main editor window ── */}
+                <rect x="12" y="12" width="270" height="210" rx="14" fill="var(--color-light-down-2)" stroke="var(--border-color)" strokeWidth="2.5" />
+
+                {/* ── Title bar ── */}
+                <rect x="12" y="12" width="270" height="36" rx="14" fill="var(--color-dark)" />
+                <rect x="12" y="30" width="270" height="18" fill="var(--color-dark)" />
+
+                {/* Traffic-light dots */}
+                <circle cx="34" cy="30" r="5.5" fill="#ff6b6b" />
+                <circle cx="52" cy="30" r="5.5" fill="#ffd166" />
+                <circle cx="70" cy="30" r="5.5" fill="var(--color-mint)" />
+
+                {/* File tab */}
+                <rect x="90" y="20" width="72" height="20" rx="4" fill="var(--color-light-down)" opacity="0.15" />
+                <text x="100" y="34" fontFamily="'Space Mono', monospace" fontSize="9" fill="var(--color-light-down)" opacity="0.7">index.ts</text>
+
+                {/* ── Code lines ── */}
+                {/* Line 1 */}
+                <text x="28" y="70" fontFamily="'Space Mono', monospace" fontSize="10" fill="var(--color-lilac)">const</text>
+                <text x="68" y="70" fontFamily="'Space Mono', monospace" fontSize="10" fill="var(--color-mint)"> app</text>
+                <text x="95" y="70" fontFamily="'Space Mono', monospace" fontSize="10" fill="var(--border-color)" opacity="0.7"> = new NestFactory()</text>
+
+                {/* Line 2 */}
+                <rect x="28" y="78" width="28" height="10" rx="2" fill="var(--color-rose)" opacity="0.25" />
+                <text x="28" y="87" fontFamily="'Space Mono', monospace" fontSize="10" fill="var(--color-rose)">await</text>
+                <text x="72" y="87" fontFamily="'Space Mono', monospace" fontSize="10" fill="var(--color-mint)"> app</text>
+                <text x="99" y="87" fontFamily="'Space Mono', monospace" fontSize="10" fill="var(--border-color)" opacity="0.7">.listen(3000)</text>
+
+                {/* Line 3 — blank */}
+                {/* Line 4 */}
+                <text x="28" y="112" fontFamily="'Space Mono', monospace" fontSize="10" fill="var(--color-lilac)">@Get</text>
+                <text x="52" y="112" fontFamily="'Space Mono', monospace" fontSize="10" fill="var(--color-sherbet)">('/users')</text>
+
+                {/* Line 5 */}
+                <text x="28" y="129" fontFamily="'Space Mono', monospace" fontSize="10" fill="var(--color-mint)">findAll</text>
+                <text x="76" y="129" fontFamily="'Space Mono', monospace" fontSize="10" fill="var(--border-color)" opacity="0.6">() {"{"}</text>
+
+                {/* Line 6 */}
+                <text x="44" y="146" fontFamily="'Space Mono', monospace" fontSize="10" fill="var(--color-lilac)">return</text>
+                <text x="84" y="146" fontFamily="'Space Mono', monospace" fontSize="10" fill="var(--color-mint)"> this</text>
+                <text x="110" y="146" fontFamily="'Space Mono', monospace" fontSize="10" fill="var(--border-color)" opacity="0.6">.svc.all()</text>
+
+                {/* Line 7 */}
+                <text x="28" y="163" fontFamily="'Space Mono', monospace" fontSize="10" fill="var(--border-color)" opacity="0.6">{"}"}</text>
+
+                {/* Cursor blink rect */}
+                <rect x="28" y="176" width="7" height="12" rx="1" fill="var(--color-mint)" opacity="0.8" className="skills-cursor" />
+
+                {/* Line numbers column */}
+                <rect x="12" y="48" width="16" height="174" fill="var(--color-dark)" opacity="0.04" />
+                <text x="16" y="70" fontFamily="'Space Mono', monospace" fontSize="8" fill="var(--border-color)" opacity="0.3">1</text>
+                <text x="16" y="87" fontFamily="'Space Mono', monospace" fontSize="8" fill="var(--border-color)" opacity="0.3">2</text>
+                <text x="16" y="112" fontFamily="'Space Mono', monospace" fontSize="8" fill="var(--border-color)" opacity="0.3">4</text>
+                <text x="16" y="129" fontFamily="'Space Mono', monospace" fontSize="8" fill="var(--border-color)" opacity="0.3">5</text>
+                <text x="16" y="146" fontFamily="'Space Mono', monospace" fontSize="8" fill="var(--border-color)" opacity="0.3">6</text>
+                <text x="16" y="163" fontFamily="'Space Mono', monospace" fontSize="8" fill="var(--border-color)" opacity="0.3">7</text>
+
+                {/* ── Floating tech pill tags ── */}
+                {/* NestJS pill */}
+                <rect x="8" y="238" width="72" height="24" rx="12" fill="var(--color-rose)" stroke="var(--border-color)" strokeWidth="2" />
+                <text x="44" y="254" textAnchor="middle" fontFamily="'Fredoka', sans-serif" fontSize="12" fontWeight="600" fill="var(--border-color)">NestJS</text>
+
+                {/* React pill */}
+                <rect x="92" y="252" width="60" height="24" rx="12" fill="var(--color-mint)" stroke="var(--border-color)" strokeWidth="2" />
+                <text x="122" y="268" textAnchor="middle" fontFamily="'Fredoka', sans-serif" fontSize="12" fontWeight="600" fill="var(--border-color)">React</text>
+
+                {/* TypeScript pill */}
+                <rect x="164" y="238" width="88" height="24" rx="12" fill="var(--color-lilac)" stroke="var(--border-color)" strokeWidth="2" />
+                <text x="208" y="254" textAnchor="middle" fontFamily="'Fredoka', sans-serif" fontSize="12" fontWeight="600" fill="var(--border-color)">TypeScript</text>
+
+                {/* PostgreSQL pill */}
+                <rect x="50" y="278" width="90" height="24" rx="12" fill="var(--color-sherbet)" stroke="var(--border-color)" strokeWidth="2" />
+                <text x="95" y="294" textAnchor="middle" fontFamily="'Fredoka', sans-serif" fontSize="12" fontWeight="600" fill="var(--border-color)">PostgreSQL</text>
+
+                {/* Docker pill */}
+                <rect x="152" y="278" width="62" height="24" rx="12" fill="var(--color-sea)" stroke="var(--border-color)" strokeWidth="2" />
+                <text x="183" y="294" textAnchor="middle" fontFamily="'Fredoka', sans-serif" fontSize="12" fontWeight="600" fill="var(--border-color)">Docker</text>
+
+                {/* Decorative dots */}
+                <circle cx="270" cy="245" r="6" fill="var(--color-mint)" stroke="var(--border-color)" strokeWidth="2" />
+                <circle cx="285" cy="260" r="4" fill="var(--color-rose)" stroke="var(--border-color)" strokeWidth="1.5" />
+                <circle cx="260" cy="265" r="3" fill="var(--color-lilac)" stroke="var(--border-color)" strokeWidth="1.5" />
+              </svg>
             </div>
           </div>
         </div>
